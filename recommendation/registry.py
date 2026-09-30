@@ -13,7 +13,7 @@ from app.recommendation.interfaces import (
 )
 from app.recommendation.weighted import WeightedHeuristicRecommender
 from app.recommendation.weights import (
-    DEFAULT_WEIGHTS,
+    DEFAULT_V3_WEIGHTS,
     ComponentWeights,
 )
 
@@ -34,7 +34,7 @@ def list_versions() -> list[str]:
 
 
 def get_recommender(
-    version: str = DEFAULT_VERSION,
+    version: str = DEFAULT_V3_VERSION,
     *,
     weights: ComponentWeights | None = None,
     max_distance_km: float | None = None,
@@ -52,7 +52,7 @@ def get_recommender(
 
 
 def _v3_factory(**kwargs: object) -> Recommender:
-    kwargs.setdefault("weights", DEFAULT_WEIGHTS)
+    kwargs.setdefault("weights", DEFAULT_V3_WEIGHTS)
     kwargs.setdefault(
         "scorers",
         {
