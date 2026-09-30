@@ -9,7 +9,7 @@ from app.recommendation.interfaces import (
     RecommendationResult,
     UserContext,
 )
-from app.recommendation.weights import DEFAULT_WEIGHTS, ComponentWeights
+from app.recommendation.weights import DEFAULT_V3_WEIGHTS, ComponentWeights
 
 
 class WeightedHeuristicRecommender:
@@ -22,7 +22,7 @@ class WeightedHeuristicRecommender:
         scorers: dict | None = None,
     ) -> None:
         self.version = version
-        self.weights = weights or DEFAULT_WEIGHTS
+        self.weights = weights or DEFAULT_V3_WEIGHTS
         self.max_distance_km = max_distance_km
         self.scorers = {**COMPONENT_SCORERS, **(scorers or {})}
 
