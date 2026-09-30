@@ -19,7 +19,7 @@ def build_explanation(
     candidate: CandidateContext,
     component_scores: dict[str, float],
 ) -> str:
-    """Return a short natural-language explanation for a recommendation."""
+   
     reasons: list[str] = []
 
     geo = component_scores.get(GEOGRAPHIC_PROXIMITY, 0.0)
