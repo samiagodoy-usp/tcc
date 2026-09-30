@@ -9,7 +9,7 @@ from app.recommendation.interfaces import (
     RecommendationResult,
     UserContext,
 )
-from app.recommendation.weights import DEFAULT_V1_WEIGHTS, ComponentWeights
+from app.recommendation.weights import DEFAULT_WEIGHTS, ComponentWeights
 
 
 class WeightedHeuristicRecommender:
@@ -17,16 +17,13 @@ class WeightedHeuristicRecommender:
 
     def __init__(
         self,
-        version: str = "v1",
         weights: ComponentWeights | None = None,
         max_distance_km: float = DEFAULT_MAX_DISTANCE_KM,
         scorers: dict | None = None,
     ) -> None:
         self.version = version
-        self.weights = weights or DEFAULT_V1_WEIGHTS
+        self.weights = weights or DEFAULT_WEIGHTS
         self.max_distance_km = max_distance_km
-        # Per-component scorer functions; a version may override individual ones
-        # (e.g. v3 uses a different shared-interests metric).
         self.scorers = {**COMPONENT_SCORERS, **(scorers or {})}
 
     def score(self, user: UserContext, candidate: CandidateContext) -> RecommendationResult:
