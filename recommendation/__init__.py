@@ -6,13 +6,13 @@ from app.recommendation.interfaces import (
     UserContext,
 )
 from app.recommendation.registry import get_recommender, list_versions, register
-from app.recommendation.weights import DEFAULT_V1_WEIGHTS, ComponentWeights
+from app.recommendation.weights import DEFAULT_V3_WEIGHTS, ComponentWeights
 
 __all__ = [
     "CandidateContext",
     "ComponentBreakdown",
     "ComponentWeights",
-    "DEFAULT_V1_WEIGHTS",
+    "DEFAULT_V3_WEIGHTS",
     "RecommendationResult",
     "Recommender",
     "UserContext",
