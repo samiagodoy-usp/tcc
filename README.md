@@ -1,15 +1,18 @@
 # PertoApp — TCC Code Excerpt
 
-A **read-only showcase** of selected PertoApp source files for the MBA Data
-Science & Analytics final project (TCC). It highlights the three parts most
-relevant to the project — the **recommendation engine**, the **analytics
-dashboard**, and the **onboarding → profile → model-variables pipeline** — plus
-the supporting data schema and written specs.
+This repository is a **read-only code excerpt** from **PertoApp**, published to
+support the author's MBA Data Science & Analytics final project (TCC). It
+highlights the three parts most relevant to the project — the **recommendation
+engine**, the **analytics dashboard**, and the **onboarding → profile →
+model-variables pipeline** — plus the supporting data schema and written specs.
 
-> This folder is a *curated copy* for reading and citation, not a runnable
-> application. Security/privacy internals and infrastructure config are
-> intentionally excluded (see "What's excluded" below), so the excerpt will not
-> run on its own. The complete, runnable system lives in the private repository.
+> This is a *curated copy* for reading and citation, **not a runnable
+> application**. Security/privacy internals and infrastructure config are
+> intentionally excluded (see "What's excluded" below), so the code here will not
+> run on its own. The complete, runnable system lives in a separate private
+> repository.
+
+**License:** academic / educational viewing only — see [`LICENSE`](./LICENSE).
 
 ## Privacy & safety
 
@@ -76,5 +79,6 @@ To protect the live platform and its users, these are **not** in this excerpt:
 - The security & privacy specification (threat model) — kept private.
 - All environment files and deployment configuration.
 
-A full manifest of what is safe vs. not safe to publish is in the main repo at
-`docs/TCC-public-files.md`.
+A full manifest of what is safe vs. not safe to publish is maintained in the
+private PertoApp repository (`docs/TCC-public-files.md`); this excerpt contains
+only the "safe to publish" set.
