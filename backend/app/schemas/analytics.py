@@ -38,6 +38,8 @@ class ChildrenAgeGroupOut(BaseModel):
 class GeographicCityOut(BaseModel):
     city: str
     users: int
+    # Share of users-with-a-city; the buckets (incl. "Other") sum to 100%.
+    percentage: float
 
 
 class GeographicMapPointOut(BaseModel):

@@ -73,7 +73,10 @@ preteen/teen) are always returned (0 when none) for a stable chart axis.
 
 ### 4. Geographic distribution
 `GROUP BY Profile.city` over live users, most populous first, with the
-min-group-size threshold applied.
+min-group-size threshold applied. Each bucket also carries a `percentage` =
+bucket users ÷ **total users-with-a-city** (= the sum of all buckets, including
+"Other") × 100 — so the buckets **sum to 100%**. Each user is in exactly one
+bucket; users with no city are excluded from the denominator.
 
 ### 5. Geographic map
 Joins `Profile.fsa` → `fsa_regions` and returns `{fsa, area, user_count,

@@ -194,17 +194,30 @@ def children_age_groups(db: Session) -> list[dict[str, Any]]:
 def _apply_min_group_threshold(
     counts: list[tuple[str, int]], key_name: str
 ) -> list[dict[str, Any]]:
-    """Sort desc and fold groups below MIN_GROUP_SIZE into one "Other" bucket.
+    """Sort desc, fold groups below MIN_GROUP_SIZE into one "Other" bucket, and
+    add a ``percentage`` per bucket that sums to 100%.
 
     Keeps totals reconcilable (small groups are aggregated, not dropped) while
-    ensuring no exposed subgroup identifies a person.
+    ensuring no exposed subgroup identifies a person. The percentage denominator
+    is the TOTAL users-with-a-value (= the sum of all buckets, including "Other"),
+    so the bars add up to 100% exactly. Each user belongs to exactly one bucket.
     """
+    total = sum(c for k, c in counts if k)  # users that have a value for this key
     shown = [(k, c) for k, c in counts if k and c >= MIN_GROUP_SIZE]
     small_total = sum(c for k, c in counts if k and c < MIN_GROUP_SIZE)
     shown.sort(key=lambda kc: kc[1], reverse=True)
-    out = [{key_name: k, "users": int(c)} for k, c in shown]
+    out = [
+        {key_name: k, "users": int(c), "percentage": _pct(int(c), total)}
+        for k, c in shown
+    ]
     if small_total:
-        out.append({key_name: _OTHER_GROUP_LABEL, "users": int(small_total)})
+        out.append(
+            {
+                key_name: _OTHER_GROUP_LABEL,
+                "users": int(small_total),
+                "percentage": _pct(int(small_total), total),
+            }
+        )
     return out
 
 
