@@ -59,9 +59,12 @@ with the same-age children do too, because children-age contributes its whole
 | Cultural preference | **0.00** | (not weighted) |
 
 `v2` increases the emphasis on geographic proximity and removes cultural
-preference from ranking. The cultural component still exists in the engine (its
-score is computed) but contributes nothing at weight `0.00`, which keeps the
-versions structurally comparable.
+preference from ranking. The cultural component is retained in the weight set
+(weight `0.00`) so the versions stay structurally comparable, but **components
+with a zero weight are omitted from the exposed `component_scores` breakdown** —
+they contribute nothing to the total and would otherwise show a meaningless bar
+(e.g. "Cultural fit") in the UI. So on `v2`/`v3` the breakdown contains only
+location, children's-age, shared-interests, and meetup-pace.
 
 ### 2.3 `v1` — initial algorithm (retained for comparison)
 

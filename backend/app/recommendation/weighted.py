@@ -40,11 +40,16 @@ class WeightedHeuristicRecommender:
         components: list[ComponentBreakdown] = []
         total = 0.0
         for key, scorer in self.scorers.items():
+            weight = self.weights[key]
+            # Skip components with zero weight entirely: they contribute nothing to
+            # the total AND must not appear in the exposed breakdown (otherwise the
+            # UI shows e.g. "Cultural fit" even though it doesn't affect the score).
+            if weight == 0:
+                continue
             if key == GEOGRAPHIC_PROXIMITY:
                 raw = scorer(user, candidate, self.max_distance_km)  # type: ignore[call-arg]
             else:
                 raw = scorer(user, candidate)
-            weight = self.weights[key]
             weighted = raw * weight
             total += weighted
             components.append(
